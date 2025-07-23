@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taradisk - Download with Confidence</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Download MP4 files from YouTube, Vimeo, TikTok and 50+ platforms with HD & 4K quality. Zero data retention, 99.9% uptime. Your trusted media downloader." />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ftaraboxdo9144back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-sans">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-soft sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="h-8 w-8 text-primary mr-3" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                        <path d="M12 14l4-2 4 2v4l-4 2-4-2v-4z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-primary">TaraBox</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-primary font-semibold">Home</a>
+                    <a href="how_it_works.html" class="text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="download_processor.html" class="btn-primary">Start Download</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-text-secondary hover:text-primary">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary to-primary-800 text-white py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Trust Indicators -->
+                <div class="flex justify-center items-center space-x-6 mb-8 text-sm opacity-90">
+                    <div class="flex items-center">
+                        <div class="w-2 h-2 bg-success rounded-full mr-2 animate-pulse"></div>
+                        <span>1,247 downloads today</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-2 h-2 bg-success rounded-full mr-2"></div>
+                        <span>342 active users</span>
+                    </div>
+                </div>
+                
+                <!-- Main Headline -->
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Download with <span class="text-accent">Confidence</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed">
+                    Transform any video URL into high-quality MP4 files. Support for 50+ platforms with zero data retention.
+                </p>
+                
+                <!-- Download Input Section -->
+                <div class="bg-white rounded-2xl p-8 shadow-large max-w-3xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 relative">
+                            <input type="url" placeholder="Paste your video URL here (YouTube, Vimeo, TikTok, TaraBox...)" class="input-field text-lg pr-12" id="urlInput" />
+                            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=100&auto=format&fit=crop" alt="Platform detection" class="w-6 h-6 rounded opacity-50" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            </div>
+                        </div>
+                        <button class="btn-primary text-lg px-8 py-4 whitespace-nowrap" onclick="window.location.href='download_processor.html'">
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            Download Now
+                        </button>
+                    </div>
+                    
+                    <!-- Platform Detection Icons -->
+                    <div class="flex justify-center items-center space-x-4 mt-6 pt-6 border-t border-surface">
+                        <span class="text-text-secondary text-sm">Supports:</span>
+                        <div class="flex space-x-3">
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=40&auto=format&fit=crop" alt="YouTube" class="w-6 h-6 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=40&auto=format&fit=crop" alt="Vimeo" class="w-6 h-6 rounded" onerror="this.onerror=null;" />
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=40&auto=format&fit=crop" alt="TikTok" class="w-6 h-6 rounded" onerror="this.onerror=null;" />
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=40&auto=format&fit=crop" alt="TaraBox Cloud" class="w-6 h-6 rounded" onerror="this.onerror=null;" />
+                            <span class="text-text-secondary text-sm">+46 more</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                    Why Choose TaraBox?
+                </h2>
+                <p class="text-xl text-text-secondary max-w-2xl mx-auto">
+                    Experience the difference with our premium download platform
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Universal Platform Support -->
+                <div class="card p-8 text-center hover:shadow-medium transition-all duration-250">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-4">Universal Platform Support</h3>
+                    <p class="text-text-secondary mb-6">
+                        Download from YouTube, Vimeo, TikTok, TaraBox Cloud, Instagram, Facebook, and 45+ other platforms with one simple tool.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-surface text-text-secondary text-sm rounded-full">YouTube</span>
+                        <span class="px-3 py-1 bg-surface text-text-secondary text-sm rounded-full">Vimeo</span>
+                        <span class="px-3 py-1 bg-surface text-text-secondary text-sm rounded-full">TikTok</span>
+                        <span class="px-3 py-1 bg-accent-100 text-accent text-sm rounded-full">TaraBox</span>
+                        <span class="px-3 py-1 bg-surface text-text-secondary text-sm rounded-full">+45</span>
+                    </div>
+                </div>
+                
+                <!-- HD & 4K Quality Options -->
+                <div class="card p-8 text-center hover:shadow-medium transition-all duration-250">
+                    <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-4">HD & 4K Quality Options</h3>
+                    <p class="text-text-secondary mb-6">
+                        Choose from multiple quality options including 4K, 1080p, 720p, and audio-only formats for any device.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-text-secondary">4K Ultra HD</span>
+                            <span class="px-2 py-1 bg-accent-100 text-accent text-xs rounded">Premium</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-text-secondary">1080p Full HD</span>
+                            <span class="px-2 py-1 bg-success-100 text-success text-xs rounded">Free</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-text-secondary">Audio Only</span>
+                            <span class="px-2 py-1 bg-success-100 text-success text-xs rounded">Free</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Zero Data Retention -->
+                <div class="card p-8 text-center hover:shadow-medium transition-all duration-250">
+                    <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-4">Zero Data Retention</h3>
+                    <p class="text-text-secondary mb-6">
+                        Your privacy is our priority. We don't store URLs, track downloads, or keep any personal information.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-center">
+                            <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">SSL Encrypted</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">GDPR Compliant</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <svg class="w-4 h-4 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-sm text-text-secondary">No Tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Platforms Marquee -->
+    <section class="py-16 bg-surface overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-text-primary mb-4">
+                Trusted by millions across 50+ platforms
+            </h2>
+            <p class="text-text-secondary">
+                Download from your favorite video platforms with confidence
+            </p>
+        </div>
+        
+        <div class="flex space-x-8 animate-marquee">
+            <div class="flex space-x-8 min-w-max">
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=40&auto=format&fit=crop" alt="YouTube" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-text-primary">YouTube</span>
+                </div>
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft">
+                    <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=40&auto=format&fit=crop" alt="Vimeo" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-text-primary">Vimeo</span>
+                </div>
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=40&auto=format&fit=crop" alt="TikTok" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-text-primary">TikTok</span>
+                </div>
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft border-2 border-accent">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=40&auto=format&fit=crop" alt="TaraBox Cloud" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-accent">TaraBox Cloud</span>
+                </div>
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft">
+                    <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?q=80&w=40&auto=format&fit=crop" alt="Instagram" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-text-primary">Instagram</span>
+                </div>
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft">
+                    <img src="https://images.pexels.com/photos/267399/pexels-photo-267399.jpeg?q=80&w=40&auto=format&fit=crop" alt="Facebook" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-text-primary">Facebook</span>
+                </div>
+                <div class="flex items-center space-x-3 bg-white px-6 py-4 rounded-lg shadow-soft">
+                    <img src="https://images.pixabay.com/photo/2016/11/21/12/51/mobile-phone-1845233_960_720.jpg?q=80&w=40&auto=format&fit=crop" alt="Twitter" class="w-8 h-8 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                    <span class="font-medium text-text-primary">Twitter</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof & Testimonials -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Stats -->
+            <div class="grid md:grid-cols-4 gap-8 mb-16">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-2">10M+</div>
+                    <div class="text-text-secondary">Downloads Processed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-2">99.9%</div>
+                    <div class="text-text-secondary">Uptime Guarantee</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-2">50+</div>
+                    <div class="text-text-secondary">Supported Platforms</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-primary mb-2">2.5M+</div>
+                    <div class="text-text-secondary">Happy Users</div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                    Trusted by Content Creators
+                </h2>
+                <p class="text-xl text-text-secondary">
+                    See what professionals are saying about TaraBox
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" alt="Alex Chen" class="w-12 h-12 rounded-full mr-4 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <div>
+                            <div class="font-semibold text-text-primary">Alex Chen</div>
+                            <div class="text-sm text-text-secondary">Video Editor</div>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary italic">
+                        "TaraBox has revolutionized my workflow. Clean interface, reliable downloads, and the quality options are exactly what I need for client projects."
+                    </p>
+                    <div class="flex text-warning mt-4">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                </div>
+                
+                <div class="card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?q=80&w=100&auto=format&fit=crop" alt="Sarah Martinez" class="w-12 h-12 rounded-full mr-4 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <div>
+                            <div class="font-semibold text-text-primary">Sarah Martinez</div>
+                            <div class="text-sm text-text-secondary">Social Media Manager</div>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary italic">
+                        "Finally, a downloader that actually works! No ads, no malware, just clean downloads. The batch processing feature saves me hours every week."
+                    </p>
+                    <div class="flex text-warning mt-4">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                </div>
+                
+                <div class="card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.pixabay.com/photo/2016/11/29/09/38/adult-1868750_960_720.jpg?q=80&w=100&auto=format&fit=crop" alt="Michael Thompson" class="w-12 h-12 rounded-full mr-4 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <div>
+                            <div class="font-semibold text-text-primary">Michael Thompson</div>
+                            <div class="text-sm text-text-secondary">Content Creator</div>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary italic">
+                        "The privacy focus is what sold me. Knowing my downloads aren't tracked or stored gives me peace of mind. Plus, the 4K quality is incredible."
+                    </p>
+                    <div class="flex text-warning mt-4">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky Download Bar -->
+    <div id="stickyDownloadBar" class="fixed bottom-0 left-0 right-0 bg-white shadow-large border-t border-surface z-40 transform translate-y-full transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <svg class="h-6 w-6 text-primary mr-2" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                        <path d="M12 14l4-2 4 2v4l-4 2-4-2v-4z"/>
+                    </svg>
+                    <span class="font-semibold text-primary">Quick Download</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <input type="url" placeholder="Paste URL here..." class="input-field w-64 py-2" />
+                    <button class="btn-primary py-2 px-4" onclick="window.location.href='download_processor.html'">
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-accent mr-3" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                            <path d="M12 14l4-2 4 2v4l-4 2-4-2v-4z"/>
+                        </svg>
+                        <span class="text-xl font-bold">TaraBox</span>
+                    </div>
+                    <p class="text-secondary-300 mb-6 max-w-md">
+                        The trusted platform for downloading high-quality videos from 50+ platforms. 
+                        Secure, fast, and privacy-focused.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-secondary-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-secondary-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-secondary-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="how_it_works.html" class="text-secondary-300 hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="download_processor.html" class="text-secondary-300 hover:text-white transition-colors">Download</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Supported Sites</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-secondary-700 mt-12 pt-8 text-center">
+                <p class="text-secondary-400">
+                    © 2025 Taradisk. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky download bar functionality
+        let lastScrollTop = 0;
+        const stickyBar = document.getElementById('stickyDownloadBar');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 500 && scrollTop > lastScrollTop) {
+                // Scrolling down and past hero section
+                stickyBar.classList.remove('translate-y-full');
+            } else if (scrollTop < lastScrollTop) {
+                // Scrolling up
+                stickyBar.classList.add('translate-y-full');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // URL input validation
+        document.getElementById('urlInput').addEventListener('input', function(e) {
+            const url = e.target.value;
+            const platformIcon = e.target.nextElementSibling.querySelector('img');
+            
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=100&auto=format&fit=crop';
+                platformIcon.alt = 'YouTube';
+            } else if (url.includes('vimeo.com')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=100&auto=format&fit=crop';
+                platformIcon.alt = 'Vimeo';
+            } else if (url.includes('tiktok.com')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=100&auto=format&fit=crop';
+                platformIcon.alt = 'TikTok';
+            } else if (url.includes('tarabox.com') || url.includes('1024terabox.com') || url.includes('terabox.com')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=100&auto=format&fit=crop';
+                platformIcon.alt = 'TaraBox Cloud';
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

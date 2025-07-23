@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Processor - Taradisk</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Process and download your videos with real-time progress tracking. Choose quality, format, and download options with TaraBox's advanced processor." />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ftaraboxdo9144back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-sans">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-soft sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="h-8 w-8 text-primary mr-3" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                        <path d="M12 14l4-2 4 2v4l-4 2-4-2v-4z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-primary">TaraBox</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="how_it_works.html" class="text-text-secondary hover:text-primary transition-colors">How It Works</a>
+                    <a href="download_processor.html" class="text-primary font-semibold">Download Processor</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-text-secondary hover:text-primary">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Download Processor Section -->
+    <section class="py-8 lg:py-12 min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                    Download Processor
+                </h1>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                    Transform any video URL into high-quality downloads with real-time processing
+                </p>
+            </div>
+
+            <!-- URL Input Section -->
+            <div class="card p-6 lg:p-8 mb-8">
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <div class="flex-1 relative">
+                        <input type="url" placeholder="Paste your video URL here (YouTube, Vimeo, TikTok, TaraBox Cloud...)" class="input-field text-lg pr-12" id="urlProcessor" />
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <div id="platformIcon" class="w-6 h-6 bg-surface rounded opacity-50 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary text-lg px-8 py-4 whitespace-nowrap" id="processBtn">
+                        <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                        Process URL
+                    </button>
+                </div>
+                
+                <!-- Platform Detection Display -->
+                <div id="platformDetection" class="hidden border-t border-surface pt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <img id="detectedPlatformIcon" src alt class="w-8 h-8 rounded" />
+                            <div>
+                                <div id="detectedPlatform" class="font-semibold text-text-primary"></div>
+                                <div id="videoTitle" class="text-sm text-text-secondary"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-success">
+                            <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                            <span>Platform Detected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Processing Status -->
+            <div id="processingStatus" class="hidden card p-6 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Processing Video</h3>
+                    <div class="text-sm text-text-secondary">
+                        <span id="processingTime">Analyzing...</span>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-surface rounded-full h-3 mb-4 overflow-hidden">
+                    <div id="progressBar" class="bg-success h-full rounded-full transition-all duration-400 ease-out" style="width: 0%"></div>
+                </div>
+                
+                <!-- Processing Steps -->
+                <div class="space-y-2">
+                    <div id="step1" class="flex items-center text-sm">
+                        <div class="w-4 h-4 rounded-full bg-surface mr-3 flex items-center justify-center">
+                            <div class="w-2 h-2 rounded-full bg-text-secondary"></div>
+                        </div>
+                        <span class="text-text-secondary">Fetching video information</span>
+                    </div>
+                    <div id="step2" class="flex items-center text-sm">
+                        <div class="w-4 h-4 rounded-full bg-surface mr-3 flex items-center justify-center">
+                            <div class="w-2 h-2 rounded-full bg-text-secondary"></div>
+                        </div>
+                        <span class="text-text-secondary">Analyzing available formats</span>
+                    </div>
+                    <div id="step3" class="flex items-center text-sm">
+                        <div class="w-4 h-4 rounded-full bg-surface mr-3 flex items-center justify-center">
+                            <div class="w-2 h-2 rounded-full bg-text-secondary"></div>
+                        </div>
+                        <span class="text-text-secondary">Preparing download options</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quality Selection Cards -->
+            <div id="qualityOptions" class="hidden mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-text-primary">Choose Quality & Format</h3>
+                    <div class="flex items-center space-x-2">
+                        <button id="toggleAdvanced" class="text-sm text-accent hover:text-accent-600 transition-colors">
+                            Advanced Options
+                        </button>
+                        <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <!-- 4K Ultra HD Option -->
+                    <div class="card p-6 hover:shadow-medium transition-all duration-250 cursor-pointer border-2 border-transparent hover:border-accent" data-quality="4k">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-accent-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">4K Ultra HD</div>
+                                    <div class="text-sm text-text-secondary">3840x2160</div>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 bg-accent-100 text-accent text-xs rounded font-medium">Premium</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Format:</span>
+                                <span class="text-text-primary font-medium">MP4</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Size:</span>
+                                <span class="text-text-primary font-medium">~245 MB</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Bitrate:</span>
+                                <span class="text-text-primary font-medium">8000 kbps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1080p Full HD Option -->
+                    <div class="card p-6 hover:shadow-medium transition-all duration-250 cursor-pointer border-2 border-transparent hover:border-success selected-quality" data-quality="1080p">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">1080p Full HD</div>
+                                    <div class="text-sm text-text-secondary">1920x1080</div>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 bg-success-100 text-success text-xs rounded font-medium">Recommended</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Format:</span>
+                                <span class="text-text-primary font-medium">MP4</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Size:</span>
+                                <span class="text-text-primary font-medium">~89 MB</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Bitrate:</span>
+                                <span class="text-text-primary font-medium">3000 kbps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 720p HD Option -->
+                    <div class="card p-6 hover:shadow-medium transition-all duration-250 cursor-pointer border-2 border-transparent hover:border-primary" data-quality="720p">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">720p HD</div>
+                                    <div class="text-sm text-text-secondary">1280x720</div>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 bg-primary-100 text-primary text-xs rounded font-medium">Fast</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Format:</span>
+                                <span class="text-text-primary font-medium">MP4</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Size:</span>
+                                <span class="text-text-primary font-medium">~45 MB</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Bitrate:</span>
+                                <span class="text-text-primary font-medium">1500 kbps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Only Option -->
+                    <div class="card p-6 hover:shadow-medium transition-all duration-250 cursor-pointer border-2 border-transparent hover:border-warning" data-quality="audio">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-warning-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 12a1 1 0 01-1-1V8a1 1 0 011-1h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 01.293.707V12a1 1 0 01-1 1H9z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">Audio Only</div>
+                                    <div class="text-sm text-text-secondary">High Quality</div>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 bg-warning-100 text-warning text-xs rounded font-medium">Compact</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Format:</span>
+                                <span class="text-text-primary font-medium">MP3</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Size:</span>
+                                <span class="text-text-primary font-medium">~3.2 MB</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Bitrate:</span>
+                                <span class="text-text-primary font-medium">320 kbps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WebM Option -->
+                    <div class="card p-6 hover:shadow-medium transition-all duration-250 cursor-pointer border-2 border-transparent hover:border-secondary" data-quality="webm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">WebM Format</div>
+                                    <div class="text-sm text-text-secondary">1080p</div>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 bg-secondary-100 text-secondary text-xs rounded font-medium">Alternative</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Format:</span>
+                                <span class="text-text-primary font-medium">WebM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Size:</span>
+                                <span class="text-text-primary font-medium">~67 MB</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-text-secondary">Codec:</span>
+                                <span class="text-text-primary font-medium">VP9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Quality Option -->
+                    <div class="card p-6 hover:shadow-medium transition-all duration-250 cursor-pointer border-2 border-dashed border-surface hover:border-accent" data-quality="custom">
+                        <div class="flex items-center justify-center h-full">
+                            <div class="text-center">
+                                <div class="w-10 h-10 bg-surface rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                </div>
+                                <div class="font-semibold text-text-primary mb-1">Custom Quality</div>
+                                <div class="text-sm text-text-secondary">Set your preferences</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Options Panel -->
+                <div id="advancedOptions" class="hidden card p-6 mb-6 bg-surface">
+                    <h4 class="font-semibold text-text-primary mb-4">Advanced Settings</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Video Codec</label>
+                            <select class="input-field">
+                                <option>H.264 (Recommended)</option>
+                                <option>H.265 (HEVC)</option>
+                                <option>VP9</option>
+                                <option>AV1</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Audio Codec</label>
+                            <select class="input-field">
+                                <option>AAC (Recommended)</option>
+                                <option>MP3</option>
+                                <option>Opus</option>
+                                <option>FLAC</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Frame Rate</label>
+                            <select class="input-field">
+                                <option>Original</option>
+                                <option>60 FPS</option>
+                                <option>30 FPS</option>
+                                <option>24 FPS</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Container Format</label>
+                            <select class="input-field">
+                                <option>MP4</option>
+                                <option>MKV</option>
+                                <option>WebM</option>
+                                <option>AVI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Action -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4 text-sm text-text-secondary">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>SSL Encrypted</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-1 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>No Data Stored</span>
+                        </div>
+                    </div>
+                    <button id="downloadBtn" class="btn-primary text-lg px-8 py-4">
+                        <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Start Download
+                    </button>
+                </div>
+            </div>
+
+            <!-- Download Progress -->
+            <div id="downloadProgress" class="hidden card p-6 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Downloading</h3>
+                    <div class="text-sm text-text-secondary">
+                        <span id="downloadSpeed">2.4 MB/s</span> • <span id="timeRemaining">32s remaining</span>
+                    </div>
+                </div>
+                
+                <!-- Download Progress Bar -->
+                <div class="w-full bg-surface rounded-full h-4 mb-4 overflow-hidden">
+                    <div id="downloadProgressBar" class="bg-success h-full rounded-full transition-all duration-400 ease-out relative" style="width: 0%">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-pulse"></div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-text-secondary">
+                        <span id="downloadedSize">0 MB</span> of <span id="totalSize">89 MB</span>
+                    </span>
+                    <span id="downloadPercent" class="font-medium text-text-primary">0%</span>
+                </div>
+            </div>
+
+            <!-- Download Complete -->
+            <div id="downloadComplete" class="hidden card p-6 mb-8 border-2 border-success">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-2">Download Complete!</h3>
+                    <p class="text-text-secondary mb-6">Your file has been successfully downloaded and is ready to use.</p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button class="btn-primary">
+                            <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            Download Another
+                        </button>
+                        <button class="btn-secondary">
+                            <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+                            </svg>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batch Processing Section -->
+            <div id="batchProcessing" class="hidden card p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-text-primary">Batch Processing</h3>
+                    <span class="px-3 py-1 bg-accent-100 text-accent text-sm rounded-full font-medium">Premium Feature</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=40&auto=format&fit=crop" alt="Video 1" class="w-10 h-10 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div>
+                                <div class="font-medium text-text-primary">Amazing Tutorial Video</div>
+                                <div class="text-sm text-text-secondary">1080p • 89 MB</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-warning rounded-full animate-pulse"></div>
+                            <span class="text-sm text-text-secondary">In Queue</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg?q=80&w=40&auto=format&fit=crop" alt="Video 2" class="w-10 h-10 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div>
+                                <div class="font-medium text-text-primary">Music Video Collection</div>
+                                <div class="text-sm text-text-secondary">720p • 45 MB</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-text-secondary rounded-full"></div>
+                            <span class="text-sm text-text-secondary">Waiting</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-surface">
+                    <button class="btn-secondary w-full">
+                        <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Add More URLs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Help & Tips -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Need Help?</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-text-primary mb-2">Supported Formats</h4>
+                        <ul class="text-sm text-text-secondary space-y-1">
+                            <li>• MP4 (H.264, H.265)</li>
+                            <li>• WebM (VP8, VP9)</li>
+                            <li>• MP3, AAC, FLAC</li>
+                            <li>• Custom resolutions</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-text-primary mb-2">Quality Guide</h4>
+                        <ul class="text-sm text-text-secondary space-y-1">
+                            <li>• 4K: Best quality, large file</li>
+                            <li>• 1080p: Recommended balance</li>
+                            <li>• 720p: Fast download</li>
+                            <li>• Audio: Music & podcasts</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-surface">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-text-secondary">Having issues?</span>
+                        <a href="how_it_works.html" class="text-accent hover:text-accent-600 text-sm font-medium transition-colors">
+                            View Troubleshooting Guide →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TaraBox Cloud Authentication Modal -->
+            <div id="taraboxAuthModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-xl p-8 max-w-md mx-4 shadow-large">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">TaraBox Cloud Access</h3>
+                        <p class="text-text-secondary text-sm">Some files may require authentication for access</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Access Password (if required)</label>
+                            <input type="password" id="taraboxPassword" placeholder="Enter file password" class="input-field" />
+                        </div>
+                        <div class="text-xs text-text-secondary">
+                            Leave empty for public files. We don't store your passwords.
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3 mt-6">
+                        <button id="cancelTaraboxAuth" class="btn-secondary flex-1">Cancel</button>
+                        <button id="proceedTaraboxAuth" class="btn-primary flex-1">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TaraBox File Info Display -->
+            <div id="taraboxFileInfo" class="hidden card p-6 mb-8 border-2 border-accent">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=40&auto=format&fit=crop" alt="TaraBox" class="w-10 h-10 rounded" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <div>
+                            <div class="font-semibold text-text-primary">TaraBox Cloud Storage</div>
+                            <div id="taraboxFileName" class="text-sm text-text-secondary">Loading file information...</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                        <span class="text-sm text-accent font-medium">Cloud File</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-text-secondary">File Size:</span>
+                        <span id="taraboxFileSize" class="font-medium text-text-primary">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-text-secondary">Type:</span>
+                        <span id="taraboxFileType" class="font-medium text-text-primary">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-text-secondary">Modified:</span>
+                        <span id="taraboxModified" class="font-medium text-text-primary">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-text-secondary">Access:</span>
+                        <span id="taraboxAccess" class="font-medium text-accent">Public</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-accent mr-3" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 4l8 4v12l-8 4-8-4V10l8-4z"/>
+                            <path d="M12 14l4-2 4 2v4l-4 2-4-2v-4z"/>
+                        </svg>
+                        <span class="text-xl font-bold">TaraBox</span>
+                    </div>
+                    <p class="text-secondary-300 mb-6 max-w-md">
+                        The trusted platform for downloading high-quality videos from 50+ platforms. 
+                        Secure, fast, and privacy-focused.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-secondary-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-secondary-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-secondary-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="how_it_works.html" class="text-secondary-300 hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="download_processor.html" class="text-secondary-300 hover:text-white transition-colors">Download</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Supported Sites</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-secondary-300 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-secondary-700 mt-12 pt-8 text-center">
+                <p class="text-secondary-400">
+                    © 2025 Taradisk. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // URL Processing Simulation
+        document.getElementById('processBtn').addEventListener('click', function() {
+            const urlInput = document.getElementById('urlProcessor');
+            const url = urlInput.value.trim();
+            
+            if (!url) {
+                alert('Please enter a valid URL');
+                return;
+            }
+            
+            // Show platform detection
+            showPlatformDetection(url);
+            
+            // Show processing status
+            setTimeout(() => {
+                showProcessingStatus();
+            }, 1000);
+            
+            // Show quality options
+            setTimeout(() => {
+                showQualityOptions();
+            }, 4000);
+        });
+        
+        function showPlatformDetection(url) {
+            const platformDetection = document.getElementById('platformDetection');
+            const platformIcon = document.getElementById('detectedPlatformIcon');
+            const platformName = document.getElementById('detectedPlatform');
+            const videoTitle = document.getElementById('videoTitle');
+            
+            // Detect platform based on URL
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=40&auto=format&fit=crop';
+                platformIcon.alt = 'YouTube';
+                platformName.textContent = 'YouTube';
+                videoTitle.textContent = 'Amazing Tutorial Video - Learn Something New';
+            } else if (url.includes('vimeo.com')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=40&auto=format&fit=crop';
+                platformIcon.alt = 'Vimeo';
+                platformName.textContent = 'Vimeo';
+                videoTitle.textContent = 'Creative Short Film - Artistic Expression';
+            } else if (url.includes('tiktok.com')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=40&auto=format&fit=crop';
+                platformIcon.alt = 'TikTok';
+                platformName.textContent = 'TikTok';
+                videoTitle.textContent = 'Viral Dance Challenge - Trending Now';
+            } else if (url.includes('tarabox.com') || url.includes('1024terabox.com') || url.includes('terabox.com')) {
+                platformIcon.src = 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=40&auto=format&fit=crop';
+                platformIcon.alt = 'TaraBox Cloud';
+                platformName.textContent = 'TaraBox Cloud Storage';
+                videoTitle.textContent = 'Cloud File - Processing for Download';
+                
+                // Show TaraBox-specific info
+                showTaraboxFileInfo(url);
+            } else {
+                platformIcon.src = 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=40&auto=format&fit=crop';
+                platformIcon.alt = 'Generic';
+                platformName.textContent = 'Video Platform';
+                videoTitle.textContent = 'Video Content - Ready to Download';
+            }
+            
+            platformDetection.classList.remove('hidden');
+        }
+        
+        function showTaraboxFileInfo(url) {
+            const taraboxFileInfo = document.getElementById('taraboxFileInfo');
+            const fileName = document.getElementById('taraboxFileName');
+            const fileSize = document.getElementById('taraboxFileSize');
+            const fileType = document.getElementById('taraboxFileType');
+            const modified = document.getElementById('taraboxModified');
+            const access = document.getElementById('taraboxAccess');
+            
+            // Simulate TaraBox file analysis
+            setTimeout(() => {
+                fileName.textContent = 'Sample_Video_File.mp4';
+                fileSize.textContent = '156.7 MB';
+                fileType.textContent = 'MP4 Video';
+                modified.textContent = '2 days ago';
+                
+                // Check if file requires authentication
+                if (url.includes('private') || url.includes('protected')) {
+                    access.textContent = 'Protected';
+                    access.classList.remove('text-accent');
+                    access.classList.add('text-warning');
+                    showTaraboxAuthModal();
+                } else {
+                    access.textContent = 'Public';
+                    access.classList.remove('text-warning');
+                    access.classList.add('text-accent');
+                }
+                
+                taraboxFileInfo.classList.remove('hidden');
+            }, 800);
+        }
+        
+        function showTaraboxAuthModal() {
+            const modal = document.getElementById('taraboxAuthModal');
+            modal.classList.remove('hidden');
+            
+            document.getElementById('cancelTaraboxAuth').addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+            
+            document.getElementById('proceedTaraboxAuth').addEventListener('click', () => {
+                const password = document.getElementById('taraboxPassword').value;
+                // Here you would normally validate the password
+                modal.classList.add('hidden');
+                
+                // Update access status
+                const access = document.getElementById('taraboxAccess');
+                access.textContent = 'Authenticated';
+                access.classList.remove('text-warning');
+                access.classList.add('text-success');
+            });
+        }
+        
+        function showProcessingStatus() {
+            const processingStatus = document.getElementById('processingStatus');
+            const progressBar = document.getElementById('progressBar');
+            const processingTime = document.getElementById('processingTime');
+            const steps = ['step1', 'step2', 'step3'];
+            
+            processingStatus.classList.remove('hidden');
+            
+            let progress = 0;
+            let currentStep = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 30;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                processingTime.textContent = `${Math.ceil((100 - progress) / 25)}s remaining`;
+                
+                // Update steps
+                if (progress > 30 && currentStep === 0) {
+                    updateStep('step1', 'Fetching video information', true);
+                    currentStep = 1;
+                }
+                if (progress > 60 && currentStep === 1) {
+                    updateStep('step2', 'Analyzing available formats', true);
+                    currentStep = 2;
+                }
+                if (progress > 90 && currentStep === 2) {
+                    updateStep('step3', 'Preparing download options', true);
+                    currentStep = 3;
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    processingTime.textContent = 'Complete!';
+                }
+            }, 200);
+        }
+        
+        function updateStep(stepId, text, completed) {
+            const step = document.getElementById(stepId);
+            const circle = step.querySelector('div div');
+            const span = step.querySelector('span');
+            
+            if (completed) {
+                circle.classList.remove('bg-text-secondary');
+                circle.classList.add('bg-success');
+                span.classList.remove('text-text-secondary');
+                span.classList.add('text-text-primary');
+            }
+        }
+        
+        function showQualityOptions() {
+            const qualityOptions = document.getElementById('qualityOptions');
+            qualityOptions.classList.remove('hidden');
+            
+            // Hide processing status
+            const processingStatus = document.getElementById('processingStatus');
+            processingStatus.classList.add('hidden');
+        }
+        
+        // Quality Selection
+        document.querySelectorAll('[data-quality]').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove previous selection
+                document.querySelectorAll('[data-quality]').forEach(c => {
+                    c.classList.remove('selected-quality', 'border-success');
+                    c.classList.add('border-transparent');
+                });
+                
+                // Add selection to clicked card
+                this.classList.add('selected-quality', 'border-success');
+                this.classList.remove('border-transparent');
+            });
+        });
+        
+        // Advanced Options Toggle
+        document.getElementById('toggleAdvanced').addEventListener('click', function() {
+            const advancedOptions = document.getElementById('advancedOptions');
+            const icon = this.nextElementSibling;
+            
+            if (advancedOptions.classList.contains('hidden')) {
+                advancedOptions.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+                this.textContent = 'Hide Advanced';
+            } else {
+                advancedOptions.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+                this.textContent = 'Advanced Options';
+            }
+        });
+        
+        // Download Process
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const selectedQuality = document.querySelector('.selected-quality');
+            if (!selectedQuality) {
+                alert('Please select a quality option');
+                return;
+            }
+            
+            // Hide quality options
+            document.getElementById('qualityOptions').classList.add('hidden');
+            
+            // Show download progress
+            const downloadProgress = document.getElementById('downloadProgress');
+            downloadProgress.classList.remove('hidden');
+            
+            // Simulate download
+            simulateDownload();
+        });
+        
+        function simulateDownload() {
+            const progressBar = document.getElementById('downloadProgressBar');
+            const downloadedSize = document.getElementById('downloadedSize');
+            const downloadPercent = document.getElementById('downloadPercent');
+            const downloadSpeed = document.getElementById('downloadSpeed');
+            const timeRemaining = document.getElementById('timeRemaining');
+            
+            let progress = 0;
+            const totalSize = 89; // MB
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 8;
+                if (progress > 100) progress = 100;
+                
+                const downloaded = Math.round((progress / 100) * totalSize);
+                const speed = (2.0 + Math.random() * 1.5).toFixed(1);
+                const remaining = Math.ceil((100 - progress) / 3);
+                
+                progressBar.style.width = progress + '%';
+                downloadedSize.textContent = downloaded;
+                downloadPercent.textContent = Math.round(progress) + '%';
+                downloadSpeed.textContent = speed + ' MB/s';
+                timeRemaining.textContent = remaining + 's remaining';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Hide download progress
+                    setTimeout(() => {
+                        document.getElementById('downloadProgress').classList.add('hidden');
+                        
+                        // Show download complete
+                        document.getElementById('downloadComplete').classList.remove('hidden');
+                    }, 1000);
+                }
+            }, 300);
+        }
+        
+        // Platform icon update on URL input
+        document.getElementById('urlProcessor').addEventListener('input', function(e) {
+            const url = e.target.value;
+            const platformIcon = document.getElementById('platformIcon');
+            
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                platformIcon.innerHTML = '<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=24&auto=format&fit=crop" alt="YouTube" class="w-6 h-6 rounded" onerror="this.src=\'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\'; this.onerror=null;">';
+            } else if (url.includes('vimeo.com')) {
+                platformIcon.innerHTML = '<img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=24&auto=format&fit=crop" alt="Vimeo" class="w-6 h-6 rounded" onerror="this.src=\'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\'; this.onerror=null;">';
+            } else if (url.includes('tiktok.com')) {
+                platformIcon.innerHTML = '<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=24&auto=format&fit=crop" alt="TikTok" class="w-6 h-6 rounded" onerror="this.src=\'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\'; this.onerror=null;">';
+            } else if (url.includes('tarabox.com') || url.includes('1024terabox.com') || url.includes('terabox.com')) {
+                platformIcon.innerHTML = '<img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=24&auto=format&fit=crop" alt="TaraBox Cloud" class="w-6 h-6 rounded" onerror="this.src=\'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\'; this.onerror=null;">';
+            } else if (url.trim() === '') {
+                platformIcon.innerHTML = '<svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>';
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
